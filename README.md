@@ -95,41 +95,41 @@ Available endpoints:
 
 1. Clone the repository:
 
-   ```bash
-   git clone <your-repository-url>
-   ```
+   bash
+   git clone https://github.com/viandranamiraanjani-hash/mosaic-product-catalog.git
+   
 
 2. Navigate to the project directory:
 
-   ```bash
+   bash
    cd product_catalog
-   ```
+   
 
 3. Install dependencies:
 
-   ```bash
+   bash
    flutter pub get
-   ```
+   
 
 4. Run the application:
 
-   ```bash
+   bash
    flutter run
-   ```
+   
 
 ## Testing
 
 Run automated tests:
 
-```bash
+bash
 flutter test
-```
+
 
 Check code quality:
 
-```bash
+bash
 flutter analyze
-```
+
 
 ## Screenshots
 
