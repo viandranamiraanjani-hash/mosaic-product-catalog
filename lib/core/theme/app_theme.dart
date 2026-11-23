@@ -4,17 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   AppTheme._();
 
-  // NOVA BRAND COLORS
   static const Color primaryColor = Color(0xFF292D30);
   static const Color backgroundColor = Color(0xFFF7F7F5);
   static const Color surfaceColor = Color(0xFFFFFFFF);
 
-  // TEXT COLORS
   static const Color textPrimaryColor = Color(0xFF292D30);
   static const Color textSecondaryColor = Color(0xFF747D83);
   static const Color textMutedColor = Color(0xFFAEB7BD);
 
-  // ACCENT COLORS
   static const Color accentColor = Color(0xFF8B969D);
   static const Color steelBlueColor = Color(0xFF687780);
   static const Color silverColor = Color(0xFFD9DDE0);
@@ -22,7 +19,6 @@ class AppTheme {
 
   static const Color borderColor = Color(0xFFE6E8E8);
 
-  // TYPOGRAPHY
   static final TextTheme textTheme = GoogleFonts.interTextTheme(
     const TextTheme(
       displayLarge: TextStyle(
