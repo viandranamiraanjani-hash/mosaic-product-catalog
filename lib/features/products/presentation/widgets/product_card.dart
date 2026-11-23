@@ -15,17 +15,14 @@ class ProductCard extends StatelessWidget {
 
     return Material(
       color: AppTheme.surfaceColor,
-      borderRadius: BorderRadius.circular(14),
+      borderRadius: BorderRadius.circular(16),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(
-              color: AppTheme.borderColor.withValues(alpha: 0.75),
-              width: 0.7,
-            ),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: AppTheme.borderColor, width: 0.8),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,22 +30,22 @@ class ProductCard extends StatelessWidget {
               _buildImage(),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 11, 12, 12),
+                  padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _buildCategory(textTheme),
-                      const SizedBox(height: 7),
+                      const SizedBox(height: 8),
                       _buildTitle(textTheme),
                       const Spacer(),
                       _buildRating(textTheme),
-                      const SizedBox(height: 9),
+                      const SizedBox(height: 10),
                       Container(
                         height: 1,
                         width: double.infinity,
-                        color: AppTheme.borderColor.withValues(alpha: 0.7),
+                        color: AppTheme.borderColor,
                       ),
-                      const SizedBox(height: 9),
+                      const SizedBox(height: 10),
                       _buildPrice(textTheme),
                     ],
                   ),
@@ -65,7 +62,7 @@ class ProductCard extends StatelessWidget {
     return Container(
       height: 155,
       width: double.infinity,
-      color: const Color(0xFFF5F1EB),
+      color: AppTheme.backgroundColor,
       padding: const EdgeInsets.all(19),
       child: Image.network(
         product.image,
@@ -80,7 +77,7 @@ class ProductCard extends StatelessWidget {
               width: 22,
               height: 22,
               child: CircularProgressIndicator(
-                strokeWidth: 1.5,
+                strokeWidth: 1.6,
                 color: AppTheme.accentColor,
               ),
             ),
@@ -115,10 +112,10 @@ class ProductCard extends StatelessWidget {
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: textTheme.labelSmall?.copyWith(
-        color: AppTheme.accentColor,
-        fontSize: 9,
+        color: AppTheme.steelBlueColor,
+        fontSize: 10,
         fontWeight: FontWeight.w700,
-        letterSpacing: 1.0,
+        letterSpacing: 0.8,
       ),
     );
   }
@@ -130,8 +127,8 @@ class ProductCard extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
       style: textTheme.bodyMedium?.copyWith(
         color: AppTheme.textPrimaryColor,
-        fontSize: 12,
-        height: 1.45,
+        fontSize: 13,
+        height: 1.4,
         fontWeight: FontWeight.w600,
       ),
     );
@@ -140,25 +137,25 @@ class ProductCard extends StatelessWidget {
   Widget _buildRating(TextTheme textTheme) {
     return Row(
       children: [
-        const Icon(Icons.star_rounded, size: 15, color: AppTheme.accentColor),
+        const Icon(Icons.star_rounded, size: 16, color: AppTheme.taupeColor),
         const SizedBox(width: 4),
         Text(
           product.rating.toStringAsFixed(1),
           style: textTheme.labelMedium?.copyWith(
             color: AppTheme.textPrimaryColor,
-            fontSize: 10,
+            fontSize: 11,
             fontWeight: FontWeight.w700,
           ),
         ),
-        const SizedBox(width: 5),
+        const SizedBox(width: 6),
         Expanded(
           child: Text(
             '${product.ratingCount} reviews',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: textTheme.bodySmall?.copyWith(
-              color: AppTheme.textMutedColor,
-              fontSize: 9,
+              color: AppTheme.textSecondaryColor,
+              fontSize: 10,
             ),
           ),
         ),
@@ -171,7 +168,7 @@ class ProductCard extends StatelessWidget {
       '\$${product.price.toStringAsFixed(2)}',
       style: textTheme.titleLarge?.copyWith(
         color: AppTheme.primaryColor,
-        fontSize: 16,
+        fontSize: 17,
         fontWeight: FontWeight.w700,
         letterSpacing: -0.4,
       ),

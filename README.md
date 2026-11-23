@@ -1,47 +1,56 @@
+# NOVA — Modern Curated Boutique
 
-# MOSAIC — Curated Boutique
+NOVA is a product catalog application built with Flutter. It allows users to browse products, search by name, filter products by category, and view product details. The app also includes a simple shopping cart where users can manage the products they want to add.
 
-**Different Finds, One Place.**
-
-MOSAIC is a Flutter-based product catalog application designed with a curated boutique concept. It provides users with a clean and elegant shopping discovery experience, allowing them to browse products, explore categories, search for items, and view product details.
+Product information is retrieved from the Fake Store API.
 
 ## Features
 
-- **Product Catalog** — Browse products with images, names, prices, categories, and ratings.
-- **Product Details** — View detailed product information, including descriptions and ratings.
-- **Category Filtering** — Filter products by category.
-- **Product Search** — Search products by title.
-- **Network Error Handling** — Handle connection failures, request timeouts, and invalid API responses.
-- **Retry Mechanism** — Retry failed requests when the connection is restored.
-- **Image Error Handling** — Display a fallback interface when product images cannot be loaded.
-- **Responsive UI** — Clean and organized interface with a curated boutique visual identity.
+- **Product Catalog** – Displays products with their images, names, prices, categories, and ratings.
+- **Product Details** – Shows product information, including its description and rating.
+- **Search** – Allows users to find products by name.
+- **Category Filter** – Filters the product list based on the selected category.
+- **Shopping Cart** – Allows users to add products, update quantities, and remove items.
+- **Network Error Handling** – Displays an error message when a request fails or the internet connection is unavailable.
+- **Retry** – Allows users to retry loading products after a connection problem.
+- **Image Handling** – Shows a loading indicator while images are loading and a fallback icon if an image fails to load.
 
-## Tech Stack
+## Built With
 
-| Technology | Purpose |
+| Technology | Usage |
 |---|---|
-| Flutter | Cross-platform application development |
+| Flutter | Application framework |
 | Dart | Programming language |
 | Provider | State management |
-| HTTP | REST API communication |
-| Google Fonts | Typography |
-| Fake Store API | Product data source |
+| HTTP | API requests |
+| Google Fonts | Application typography |
+| Fake Store API | Product data |
 
-## Architecture
+## Project Structure
 
-The application uses a layered architecture to separate responsibilities and improve maintainability.
+The project is organized by feature to keep the code separated and easier to maintain.
 
-```text
+text
 lib/
 ├── main.dart
 │
 ├── core/
-│   ├── error/
-│   ├── network/
 │   └── theme/
 │       └── app_theme.dart
 │
 └── features/
+    ├── cart/
+    │   ├── data/
+    │   │   └── models/
+    │   │       └── cart_item.dart
+    │   └── presentation/
+    │       ├── pages/
+    │       │   └── cart_page.dart
+    │       ├── state/
+    │       │   └── cart_provider.dart
+    │       └── widgets/
+    │           └── cart_item_card.dart
+    │
     └── products/
         ├── data/
         │   ├── models/
@@ -61,87 +70,124 @@ lib/
             │   └── product_provider.dart
             └── widgets/
                 └── product_card.dart
-```
 
-### Layer Responsibilities
 
-- **Core** — Shared application configuration and theme.
-- **Data** — Product models, API communication, and repository implementation.
-- **Domain** — Reserved for domain-specific business logic.
-- **Presentation** — User interface, reusable widgets, and state management.
+### Architecture Overview
 
-## API Source
+- **Core** contains shared application settings and theme configuration.
+- **Data** handles product models, API communication, repository logic, and cart item data.
+- **Presentation** contains the screens, reusable widgets, and Provider classes used to manage application state.
+- **Domain** is reserved for business logic if it is needed in future development.
 
-MOSAIC uses the [Fake Store API](https://fakestoreapi.com/) to retrieve product information.
+## API Integration
 
-Available endpoints:
+Product data is provided by [Fake Store API](https://fakestoreapi.com/).
 
-- `GET /products` — Retrieve all products.
-- `GET /products/categories` — Retrieve product categories.
-- `GET /products/category/{category}` — Retrieve products by category.
-- `GET /products/{id}` — Retrieve product details.
+The application uses the following endpoints:
+
+| Endpoint | Description |
+|---|---|
+| `GET /products` | Retrieves all products |
+| `GET /products/categories` | Retrieves available categories |
+| `GET /products/category/{category}` | Retrieves products by category |
+
+### Product Details
+
+The product detail page uses the product data already retrieved by the catalog page. The selected product is passed to the detail page, so a separate API request is not made when opening a product.
+
+### Search and Filtering
+
+Search is performed locally using the product data already loaded into the application. Category selection is managed through Provider.
+
+## Shopping Cart
+
+The shopping cart is managed locally using Provider. Users can add products, change quantities, remove individual items, and view the subtotal.
+
+Cart data is stored in memory and will be cleared when the application is restarted. The checkout button is included for demonstration purposes only and is not connected to a payment service or backend.
 
 ## Getting Started
 
-### Prerequisites
+### Requirements
 
 - Flutter SDK
 - Dart SDK
 - Android Studio or Visual Studio Code
-- Android Emulator or a physical device
+- Android Emulator or a physical Android device
 - Internet connection
 
 ### Installation
 
 1. Clone the repository:
 
-   bash
-   git clone https://github.com/viandranamiraanjani-hash/mosaic-product-catalog.git
-   
+bash
+git clone https://github.com/viandranamiraanjani-hash/mosaic-product-catalog.git
 
-2. Navigate to the project directory:
 
-   bash
-   cd product_catalog
-   
+2. Open the project directory:
 
-3. Install dependencies:
+bash
+cd product_catalog
 
-   bash
-   flutter pub get
-   
+
+3. Install the dependencies:
+
+bash
+flutter pub get
+
 
 4. Run the application:
 
-   bash
-   flutter run
-   
-
-## Testing
-
-Run automated tests:
-
 bash
-flutter test
+flutter run
 
 
-Check code quality:
+## Dependencies
+
+The main packages used in this project are:
+
+- `provider: ^6.1.5+1`
+- `http: ^1.6.0`
+- `google_fonts: 6.3.3`
+
+## Code Analysis and Testing
+
+To check the project for potential issues:
 
 bash
 flutter analyze
 
 
+To run the available automated tests:
+
+bash
+flutter test
+
+
 ## Screenshots
 
-Application screenshots will be added here.
+### Homepage
+![Homepage](screenshots/HOMEPAGE.png)
+
+### Product Detail
+![Product Detail](screenshots/PRODUCT_DETAIL.png)
+
+### Category Filter
+![Category Filter](screenshots/FILTER_CATEGORY.png)
+
+### Search
+![Search](screenshots/SEARCH_CATEGORY.png)
+
+### Shopping Cart
+![Shopping Cart](screenshots/CART.png)
 
 ## Project Information
 
-**Project Name:** MOSAIC — Curated Boutique  
-**Platform:** Flutter  
-**Category:** Product Catalog Application  
-**API:** Fake Store API
+| Item | Details |
+|---|---|
+| Application | NOVA |
+| Type | Product Catalog Application |
+| Framework | Flutter |
+| Language | Dart |
+| API | Fake Store API |
+| State Management | Provider |
 
----
-
-*Different Finds, One Place.*

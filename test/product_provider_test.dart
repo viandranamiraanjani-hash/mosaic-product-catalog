@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import '../lib/features/products/data/models/product_model.dart';
-import '../lib/features/products/data/repositories/product_repository.dart';
-import '../lib/features/products/data/sources/product_api_service.dart';
-import '../lib/features/products/presentation/state/product_provider.dart';
+import 'package:product_catalog/features/products/data/models/product_model.dart';
+import 'package:product_catalog/features/products/data/repositories/product_repository.dart';
+import 'package:product_catalog/features/products/data/sources/product_api_service.dart';
+import 'package:product_catalog/features/products/presentation/state/product_provider.dart';
 
 class EmptyProductRepository extends ProductRepository {
   EmptyProductRepository() : super(ProductApiService());

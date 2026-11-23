@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/theme/app_theme.dart';
+import '../../../cart/presentation/pages/cart_page.dart';
+import '../../../cart/presentation/state/cart_provider.dart';
 import '../../data/models/product_model.dart';
 
 class ProductDetailPage extends StatelessWidget {
@@ -40,6 +43,8 @@ class ProductDetailPage extends StatelessWidget {
                     _buildDescription(textTheme),
                     const SizedBox(height: 30),
                     _buildProductInformation(textTheme),
+                    const SizedBox(height: 25),
+                    _buildAddToCartButton(context),
                     const SizedBox(height: 30),
                     _buildFooter(textTheme),
                   ],
@@ -67,7 +72,7 @@ class ProductDetailPage extends StatelessWidget {
           ),
           const Spacer(),
           const Text(
-            'MOSAIC.',
+            'NOVA.',
             style: TextStyle(
               fontFamily: 'serif',
               fontSize: 25,
@@ -229,7 +234,7 @@ class ProductDetailPage extends StatelessWidget {
       ),
       child: Column(
         children: [
-          _buildInformationRow('Collection', 'MOSAIC Selection', textTheme),
+          _buildInformationRow('Collection', 'NOVA Selection', textTheme),
           const SizedBox(height: 14),
           Container(height: 1, color: AppTheme.borderColor),
           const SizedBox(height: 14),
@@ -271,6 +276,53 @@ class ProductDetailPage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildAddToCartButton(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 54,
+      child: ElevatedButton.icon(
+        onPressed: () {
+          context.read<CartProvider>().addProduct(product);
+
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: const Text('Product added to your bag.'),
+                backgroundColor: AppTheme.primaryColor,
+                behavior: SnackBarBehavior.floating,
+                action: SnackBarAction(
+                  label: 'VIEW BAG',
+                  textColor: Colors.white,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const CartPage()),
+                    );
+                  },
+                ),
+              ),
+            );
+        },
+        icon: const Icon(Icons.shopping_bag_outlined, size: 19),
+        label: const Text(
+          'ADD TO BAG',
+          style: TextStyle(
+            fontSize: 11,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 1.2,
+          ),
+        ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppTheme.primaryColor,
+          foregroundColor: AppTheme.surfaceColor,
+          elevation: 0,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+        ),
+      ),
     );
   }
 
